@@ -1,0 +1,107 @@
+<form [formGroup]="serverRebootForm" class="container-fluid">
+  <h2 mat-dialog-title>Schedule a Server Reboot</h2>
+  <mat-dialog-content>
+    <div class="container-fluid">
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Server</mat-label>
+          <mat-select formControlName="server">
+            @for (serv of serverList; track $index) {
+              <mat-option [value]="serv.Hostname" [disabled]="serv.Status === 'DOWN'">
+                {{ serv.Hostname }}
+              </mat-option>
+            }
+          </mat-select>
+          @if (serverRebootForm.controls['server'].hasError('required')) {
+            <mat-error
+              ><strong><small>Required</small></strong></mat-error
+            >
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="radio-mat-form-field">
+        <div class="mat-mdc-text-field-wrapper mdc-text-field radio-inner">
+          <mat-label>Reboot ?<sup>*</sup></mat-label>
+          <mat-radio-group formControlName="rebootStrategy">
+            <mat-radio-button value="Now">Now</mat-radio-button>
+            <mat-radio-button value="Later">Later</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      @if (!serverRebootForm.controls['rebootStrategy'].hasError('required')) {
+        <div
+          class="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align radio-error-div"
+        ></div>
+      }
+
+      @if (serverRebootForm.controls['rebootStrategy'].hasError('required')) {
+        <mat-error class="radio-mat-error">
+          <strong
+            ><small><small>Required</small></small></strong
+          ></mat-error
+        >
+      }
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="datepicker" [min]="today" formControlName="rebootDate" />
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+          @if (serverRebootForm.controls['rebootDate'].hasError('required')) {
+            <mat-error
+              ><strong><small>Required</small></strong></mat-error
+            >
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Pick a time</mat-label>
+          <input matInput [matTimepicker]="timepicker" formControlName="rebootTime" />
+          <mat-timepicker #timepicker />
+          <mat-timepicker-toggle [for]="timepicker" matSuffix />
+          @if (serverRebootForm.controls['rebootDate'].hasError('required')) {
+            <mat-error
+              ><strong><small>Required</small></strong></mat-error
+            >
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Reason</mat-label>
+          <textarea
+            matInput
+            placeholder="Ex. Rebooted as part of weekly maintainance."
+            formControlName="comment"
+          ></textarea>
+          @if (serverRebootForm.controls['comment'].hasError('minlength')) {
+            <mat-error
+              ><strong><small>Minimum length required is 5 characters.</small></strong></mat-error
+            >
+          }
+          @if (serverRebootForm.controls['comment'].hasError('maxlength')) {
+            <mat-error
+              ><strong><small>Exceeds limit of 100 characters.</small></strong></mat-error
+            >
+          }
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button matButton="elevated" type="reset" mat-dialog-close cdkFocusInitial>Discard</button>
+    <button
+      matButton="elevated"
+      type="submit"
+      (click)="onReboot()"
+      [disabled]="serverRebootForm.invalid"
+    >
+      Reboot
+    </button>
+  </mat-dialog-actions>
+</form>

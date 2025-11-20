@@ -1,0 +1,27 @@
+form {
+  width: 500px;
+
+  mat-dialog-content {
+    height: 425px;
+  }
+}
+
+.radio-mat-form-field {
+  border-bottom: 1px grey solid;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  height: 56px;
+  background-color: var(--mat-sys-surface-variant);
+}
+
+.radio-error-div {
+  height: 20px;
+}
+
+.radio-inner {
+  padding-top: 10px;
+}
+
+.radio-mat-error {
+  padding-left: 15px;
+}

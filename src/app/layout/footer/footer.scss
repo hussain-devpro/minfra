@@ -1,0 +1,14 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  width: 100%;
+  background-color: var(--mat-sys-secondary);
+  color: var(--mat-sys-on-secondary);
+  flex: 1 1 auto;
+
+  div {
+    text-align: right;
+    padding: 0 10px;
+  }
+}

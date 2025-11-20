@@ -1,0 +1,96 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Problem Statement </mat-panel-title>
+      <mat-panel-description> Take Home Test </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card class="container-fluid">
+      <mat-card-content class="py-3">
+        <p>Your task is to design a simple UI feature to schedule a server reboot.</p>
+        <div class="row">
+          <div class="col-4">
+            <h6>Requirements:</h6>
+            <ul>
+              <li>Users can select a server.</li>
+              <li>Users can schedule a time for the reboot.</li>
+            </ul>
+          </div>
+          <div class="col-8">
+            <h6>Instructions & Context:</h6>
+            <ul>
+              <li>Assume the application uses Angular and TypeScript.</li>
+              <li>Your focus should be on the UI design and logic only.</li>
+              <li>
+                Assume that all necessary backend services and APIs are available and functional.
+              </li>
+              <li>
+                This exercise reflects the kinds of problems we solve day-to-day, the goal is to see
+                how you structure and implement a feature - clarity, maintainability and logical
+                design are important.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-expansion-panel>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Solution Architechture </mat-panel-title>
+      <mat-panel-description> Developed by Hussain Ali Shahid </mat-panel-description>
+    </mat-expansion-panel-header>
+      <mat-card class="container-fluid">
+        <small>
+          <mat-card-content>
+            <div class="text-align-center pb-3">
+              <button matButton="filled" (click)="openDialog()">Server Reboot</button>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <h6>Overview:</h6>
+                <p>The project was structured following best practices for a scalable Angular application. The architecture separates concerns into the following modules:</p>
+                <ul>
+                    <li>layout: Contains consistent components used across the entire application, such as the header, footer, and content wrapper.</li>
+                    <li>core: Contains constants, enums, route guards, interceptors, interfaces, services</li>
+                    <li>feature: Contains components that correspond to specific application pages or routes.</li>
+                    <li>shared: Comprises reusable components, such as forms and dialog boxes, that are shared across multiple feature modules.</li>
+                  </ul>
+                <h6>Implementation Highlights</h6>
+                <ul>
+                  <li>Initial Project Setup: The foundation was laid by installing the Angular CLI and integrating Angular Material. External styling from Bootstrap CDN was also imported.</li>
+                  <li>API Communication: A server.ts service was created to manage communication with the application's API.</li>
+                  <li>Data Models: Type safety was ensured by creating interfaces for both API responses (server.interface.ts) and specific request payloads, such as the reboot request (reboot-request.interface.ts).</li>
+                  <li>Feature Development: A dedicated page (schedule-assignment) was developed to provide an explanation of the feature's implementation.</li>
+                </ul>
+              </div>
+              <div class="col-6">
+                <h6>Implementation of the Server Reboot Feature</h6>
+                <ul>
+                  <li>Reboot Form (server-form)</li>
+                  <ul>
+                    <li>Server Selection: Users can select a specific server from a list populated by the getAll API response from the server.ts service.</li>
+                    <li>Reboot Timing: The user can choose to reboot the server "Now" or "Later" using a flag.</li>
+                    <ul>
+                      <li>Selecting "Later" dynamically enables additional form controls for scheduling.</li>
+                      <li>If the "Later" option is chosen, the user can specify the exact date and time for the reboot.</li>
+                    </ul>
+                    <li>Reason for Reboot: A text field is available for users to provide a reason for the reboot.</li>
+                    <li>Form Validation: All form controls include robust validation rules (e.g., required, minLength, maxLength) to ensure data integrity before submission.</li>
+                  </ul>
+                  <li>Confirmation Dialog (confirmation-dialog)</li>
+                  <ul>
+                    <li>The dialog content is dynamically generated based on the selected reboot strategy ("Now" or "Later"), providing context-specific information to the user.</li>
+                  </ul>
+                  <li>API Communication and User Feedback</li>
+                  <ul>
+                    <li>Upon successful form submission and user confirmation, the application sends the reboot request to the API via the server.ts service.</li>
+                    <li>After receiving the API response, a Snackbar notification is displayed to the user, confirming the status of the reboot request.</li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+          </mat-card-content>
+        </small>
+      </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>

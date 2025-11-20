@@ -1,0 +1,36 @@
+[
+  {
+    "Health": "RUNNING",
+    "Hostname": "Server A",
+    "Status": "UP"
+  },
+  {
+    "Health": "RUNNING",
+    "Hostname": "Server B",
+    "Status": "UP"
+  },
+  {
+    "Hostname": "Server C",
+    "Status": "DOWN"
+  },
+  {
+    "Health": "RUNNING",
+    "Hostname": "Server D",
+    "Status": "UP"
+  },
+  {
+    "Health": "UNKNOWN",
+    "Hostname": "Server E",
+    "Status": "UP"
+  },
+  {
+    "Health": "RUNNING",
+    "Hostname": "Server F",
+    "Status": "UP"
+  },
+  {
+    "Health": "RUNNING",
+    "Hostname": "Server G",
+    "Status": "UP"
+  }
+]
