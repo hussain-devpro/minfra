@@ -67,6 +67,7 @@ export class ServerForm implements OnInit {
       } else {
         this.serverRebootForm.controls['rebootDate'].enable();
         this.serverRebootForm.controls['rebootTime'].enable();
+        this.serverRebootForm.markAllAsTouched();
       }
     });
   }
